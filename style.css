@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	
+	background-image: url("bodyback.png");
+	font-size: 20px;
+	font-family: Impact;
+	color: #ffffff;
+
+}
+
+#etchasketch{
+	
+	border: 10px solid	#ffffff;
+	background-image: url("newb.jpg");
+	
+}
+.wrap {
+    width: 100%;
+}
+
+.floatleft {
+    float:left; 
+    width: 50%;
+    height: 400px;
+}
+
+.floatright {
+	float: right;
+    height: 400px;
+    width: 38%;
+}
