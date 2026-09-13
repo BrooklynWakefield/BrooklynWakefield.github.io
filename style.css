@@ -1,0 +1,375 @@
+/* Brooklyn Wakefield — portfolio
+   Palette: drafting-paper background, ink text, blueprint-blue structure,
+   marigold annotation accent. Layout borrows from technical drawings:
+   hairline rules, corner ticks, numbered entries where content is truly
+   sequential (work history, coursework). */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --paper: #F5F3ED;
+  --paper-line: #DAD5C6;
+  --ink: #1B2430;
+  --ink-soft: #4A5361;
+  --blue: #2C4A6E;
+  --blue-deep: #1D3350;
+  --amber: #C97A0C;
+  --max-w: 760px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--blue-deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--amber); }
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- header / nav ---------- */
+
+header.site {
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.brand-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.brand-row h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.brand-row h1 a { color: var(--ink); text-decoration: none; }
+
+.role-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  padding: 3px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+nav.main {
+  margin-top: 22px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 12px 0;
+}
+
+nav.main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 28px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+}
+
+nav.main a { color: var(--ink); text-decoration: none; }
+nav.main a:hover { color: var(--amber); }
+nav.main a.current { color: var(--amber); font-weight: 700; }
+
+/* secondary "in this section" list, shown on section landing +
+   detail pages so sibling pages stay reachable without cluttering
+   the main nav row */
+nav.section {
+  margin-top: 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+}
+nav.section .section-label {
+  color: var(--blue);
+  margin-right: 10px;
+}
+nav.section ul {
+  display: inline;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav.section li { display: inline; }
+nav.section li:not(:last-child)::after { content: "  ·  "; color: var(--paper-line); }
+nav.section a { color: var(--ink-soft); text-decoration: none; }
+nav.section a:hover { color: var(--amber); }
+nav.section a.current { color: var(--amber); font-weight: 700; }
+
+/* ---------- section furniture ---------- */
+
+.tick-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 46px 0 10px 0;
+}
+.tick-label::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--blue);
+}
+
+h1.page-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 4px 0 26px 0;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 30px 0 8px 0;
+}
+
+p { margin: 0 0 16px 0; }
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+}
+
+/* image figures — real <img> tags once files are dropped in;
+   the onerror handler adds .img-missing so unfilled slots still show
+   a clear placeholder instead of a broken-image icon */
+figure.img-slot {
+  margin: 18px 0;
+}
+figure.img-slot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+}
+figure.img-slot figcaption {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--blue);
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+figure.img-slot figcaption .slot-note {
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+figure.img-slot.img-missing img { display: none; }
+figure.img-slot.img-missing {
+  border: 1px dashed var(--blue);
+  background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(44,74,110,0.06) 8px, rgba(44,74,110,0.06) 16px);
+  padding: 22px;
+}
+figure.img-slot.img-missing figcaption {
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* size + grid utilities for laying multiple images out compactly */
+figure.img-slot.natural img { width: auto; max-width: 100%; }
+figure.img-slot.no-border img { border: none; }
+
+/* about-page hero: small photo to the right of the intro copy */
+.hero-row {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+.hero-row .hero-copy { flex: 1 1 auto; min-width: 0; }
+figure.img-slot.hero-photo {
+  flex: 0 0 152px;
+  width: 152px;
+  margin: 0;
+  padding-left: 16px;
+  transform: translateY(-26px);
+}
+figure.img-slot.hero-photo img { width: 100%; height: auto; border-radius: 2px; }
+figure.img-slot.hero-photo figcaption { display: none; } /* keep the small photo caption-free; full path still in MANIFEST.md */
+
+@media (max-width: 560px) {
+  .hero-row { flex-direction: row; }
+  figure.img-slot.hero-photo { flex-basis: 97px; width: 97px; }
+}
+
+figure.img-slot.size-70 { max-width: 70%; margin-left: auto; margin-right: auto; }
+figure.img-slot.size-55 { max-width: 55%; margin-left: auto; margin-right: auto; }
+figure.img-slot.size-50 { max-width: 50%; margin-left: auto; margin-right: auto; }
+figure.img-slot.size-45 { max-width: 45%; margin-left: auto; margin-right: auto; }
+figure.img-slot.size-35 { max-width: 35%; margin-left: auto; margin-right: auto; }
+
+.img-grid {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+}
+.img-grid figure.img-slot { margin: 0; }
+.img-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.img-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.img-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.img-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+.img-grid figcaption { font-size: 0.66rem; }
+.img-grid figcaption .slot-note { display: none; } /* keep tight tiles legible; full path still in MANIFEST.md */
+
+.callout-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+.callout-row > figure { flex: 1 1 0; margin: 0; }
+.callout-row figcaption { text-align: center; }
+.callout-highlight {
+  border: 2px solid var(--amber) !important;
+}
+.grid-note {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--amber);
+  text-align: center;
+  margin: -4px 0 14px 0;
+}
+
+/* compare table — current vs. redesign, side by side */
+table.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0 26px 0;
+}
+table.compare-table th {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--blue);
+  text-align: left;
+  padding: 0 10px 10px 10px;
+  border-bottom: 1px solid var(--ink);
+}
+table.compare-table td {
+  vertical-align: top;
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--paper-line);
+  width: 50%;
+}
+table.compare-table td figure.img-slot { margin: 0; }
+table.compare-table td a { font-family: 'Space Mono', monospace; font-size: 0.85rem; }
+
+@media (max-width: 640px) {
+  .img-grid.cols-3, .img-grid.cols-4, .img-grid.cols-5 { grid-template-columns: repeat(2, 1fr); }
+  .callout-row { flex-direction: column; }
+  table.compare-table, table.compare-table tbody, table.compare-table tr, table.compare-table td {
+    display: block;
+    width: 100%;
+  }
+  table.compare-table thead { display: none; }
+  table.compare-table td { border-bottom: none; padding: 8px 0; }
+  table.compare-table tr { margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--paper-line); }
+}
+@media (max-width: 420px) {
+  .img-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.entry-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--paper-line);
+}
+.entry-list a {
+  font-weight: 600;
+  text-decoration: none;
+}
+.entry-list a:hover { color: var(--amber); }
+.entry-list .yr {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+blockquote {
+  margin: 20px 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--amber);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.callout {
+  border: 1px solid var(--ink);
+  padding: 16px 18px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.35);
+  margin: 24px 0;
+}
+
+.patent {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--paper-line);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+/* ---------- footer ---------- */
+
+footer.site {
+  margin-top: 70px;
+  padding: 24px 0 60px 0;
+  border-top: 1px solid var(--ink);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+footer.site a { color: var(--ink-soft); }
+
+@media (max-width: 560px) {
+  .brand-row { flex-direction: column; align-items: flex-start; }
+  h1.page-title { font-size: 1.7rem; }
+}
